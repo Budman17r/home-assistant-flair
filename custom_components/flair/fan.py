@@ -17,6 +17,8 @@ ATTR_PERCENT_OPEN = "percent_open"
 ATTR_IS_ACTIVE = "is_active"
 ATTR_RSSI = "rssi"
 ATTR_VOLTAGE = "voltage"
+ATTR_DUCT_PRESSURE = "duct_pressure"
+ATTR_DUCT_TEMPERATURE = "duct_temperature"
 
 ORDERED_NAMED_VENT_STATES = [VENT_HALF_OPEN, VENT_OPEN]
 
@@ -83,12 +85,26 @@ class FlairVent(FanEntity):
         if self._vent.is_active is None:
             return None
         return self._vent.is_active
-
+ 
     @property
     def rssi(self) -> int:
         if self._vent.rssi is None:
             return None
         return self._vent.rssi
+ 
+    @property
+    def duct_pressure(self) -> int:
+        if self._vent.duct_pressure is None:
+            return None
+        return self._vent.duct_pressure
+
+    @property
+    def duct_temperature(self) -> int:
+        if self._vent.duct_temperature is None:
+            return None
+        return self._vent.duct_temperature
+    
+
 
     @property
     def voltage(self) -> int:
@@ -107,6 +123,8 @@ class FlairVent(FanEntity):
             ATTR_VOLTAGE: self.voltage,
             ATTR_IS_ACTIVE: self.is_active,
             ATTR_RSSI: self.rssi,
+            ATTR_DUCT_PRESSURE: self.duct_pressure,
+            ATTR_DUCT_TEMPERATURE: self.duct_temperature
         }
 
     @property
